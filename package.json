@@ -1,5 +1,5 @@
 {
-  "name": "grunt-hamlet-compile",
+  "name": "gulp-hamlet-compile",
   "version": "0.0.1",
   "description": "Compile HAML",
   "main": "index.js",
