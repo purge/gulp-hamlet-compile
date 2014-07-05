@@ -1,5 +1,7 @@
 # gulp-hamlet-compiler
-> A hamlet-compoler plugin for gulp
+> A hamlet-compiler plugin for gulp
+
+![](https://dl.dropboxusercontent.com/u/100463011/hamlet-logo.png)
 
 Compile your [hamlet](http://hamlet.coffee/) templates with ease!
 
