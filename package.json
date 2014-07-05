@@ -1,17 +1,27 @@
 {
   "name": "gulp-hamlet-compile",
-  "version": "0.0.1",
-  "description": "Compile HAML",
+  "version": "0.1.0",
+  "description": "Compile hamlet templates (see: https://github.com/inductor-labs/hamlet)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Simon Elliott",
-  "license": "BSD",
+  "contributors": [
+    "Dmitri Voronianski <dmitri.voronianski@gmail.com"
+  ],
+  "license": "MIT",
   "dependencies": {
+    "coffee-script": "^1.7.1",
+    "gulp-util": "^2.2.17",
     "hamlet-compiler": "^0.6.0-pre.7",
-    "through2": "^0.5.1",
-    "gulp-util": "^2.2.17"
+    "through2": "^0.5.1"
   },
-  "keywords": [ "gulp", "gulp-plugin", "hamlet"]
+  "keywords": [
+    "gulp",
+    "gulp-plugin",
+    "hamlet",
+    "haml",
+    "compiler"
+  ]
 }
