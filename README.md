@@ -1,4 +1,4 @@
-# gulp-hamlet-compiler
+# gulp-hamlet-compile
 > A hamlet-compiler plugin for gulp
 
 ![](https://dl.dropboxusercontent.com/u/100463011/hamlet-logo.png)
