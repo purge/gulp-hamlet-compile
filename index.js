@@ -1,38 +1,43 @@
-var path = require('path');
 var gutil = require('gulp-util');
 var through = require('through2');
+var coffee = require('coffee-script');
 var hamlc = require('hamlet-compiler');
+
+var compile = hamlc.compile;
+var parser = hamlc.parser;
 var PluginError = gutil.PluginError;
 
-const PLUGIN_NAME = 'gulp-hamlet-compile';
+var PLUGIN_NAME = 'gulp-hamlet-compile';
 
 module.exports = function (options) {
-  return through.obj(function (file, enc, cb) {
+    'use strict';
 
-    if (file.isNull()) {
-      this.push(file);
-      return cb();
-    }
+    options = options || {};
 
-    if (file.isStream()) {
-      this.emit('error', new PluginError(PLUGIN_NAME, "Streaming not supported"));
-      return cb();
-    }
+    return through.obj(function (file, enc, cb) {
+        if (file.isNull()) {
+            this.push(file);
+            return cb();
+        }
 
-    var str = file.contents.toString();
-    var filePath = file.path;
+        if (file.isStream()) {
+            this.emit('error', new PluginError(PLUGIN_NAME, 'Streaming not supported'));
+            return cb();
+        }
 
-    try {
-      file.contents = new Buffer(hamlc.compile(str, options));
-      file.path = gutil.replaceExtension(filePath, '.js');
-      this.push(file);
-    } catch (err) {
-      err.fileName = err.fileName || filePath;
-      this.emit('error', new PluginError(PLUGIN_NAME, err, {
-        fileName: filePath
-      }));
-    }
+        var str = file.contents.toString();
+        var filePath = file.path;
 
-    cb();
-  });
+        try {
+            options.compiler = coffee;
+            file.contents = new Buffer(compile(parser.parse(str), options));
+            file.path = gutil.replaceExtension(filePath, '.js');
+            this.push(file);
+        } catch (err) {
+            err.fileName = err.fileName || filePath;
+            this.emit('error', new PluginError(PLUGIN_NAME, err, { fileName: filePath }));
+        }
+
+        cb();
+    });
 };
